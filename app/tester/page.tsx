@@ -61,22 +61,24 @@ export default function Tester() {
       const nextKey = word[pos]
       if (e.key.toUpperCase() === nextKey) {
         const t = Date.now()
-        if (!pos) {
-          setStartTime(t)
-        }
-        if (pos === word.length - 1) {
-          setTimeout(() => {
-            setRecords([...records, record])
-            setRecord([])
-          }, wordInterval)
-        }
-        setRecord([
+        const newRecord = [
           ...record,
           {
             timeDown: startTime ? t - startTime : 0,
             timeUp: -1, // TODO:
           },
-        ])
+        ]
+
+        if (!pos) {
+          setStartTime(t)
+        }
+        if (pos === word.length - 1) {
+          setTimeout(() => {
+            setRecords([...records, newRecord])
+            setRecord([])
+          }, wordInterval)
+        }
+        setRecord(newRecord)
       }
     }
   }
@@ -120,6 +122,9 @@ export default function Tester() {
         </form>
       </div>
       {isStarted && <Trial word={word} finger={finger} record={record} />}
+      {records.map((r, i) => (
+        <Trial key={i} word={word} finger={finger} record={r} />
+      ))}
     </main>
   )
 }
