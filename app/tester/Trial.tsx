@@ -1,3 +1,5 @@
+import TrialChart from './TrialChart'
+
 export type StrokeLog = {
   timeDown: number
   timeUp: number
@@ -23,6 +25,9 @@ const Trial: React.FC<Props> = ({ record }) => {
       {record.word.length === record.strokes.length && (
         <span>{record.strokes.at(-1)?.timeDown} ms</span>
       )}
+      <div className="h-20">
+        <TrialChart record={record} />
+      </div>
     </div>
   )
 }

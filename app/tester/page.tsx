@@ -26,7 +26,7 @@ export default function Tester() {
   const [finger, setFinger] = useState('')
 
   // game config
-  const [wordInterval, setWordInterval] = useState(1000)
+  const [wordInterval, setWordInterval] = useState(100)
 
   // records
   const [records, setRecords] = useState<WordRecord[]>([])
@@ -96,6 +96,7 @@ export default function Tester() {
               word,
               finger,
             })
+            setStartTime(0)
           }, wordInterval)
         }
         setRecord(newRecord)
