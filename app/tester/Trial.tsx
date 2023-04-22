@@ -1,6 +1,3 @@
-import classNames from 'classnames'
-import { KeyboardEventHandler } from 'react'
-
 export type StrokeLog = {
   timeDown: number
   timeUp: number
