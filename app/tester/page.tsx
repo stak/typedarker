@@ -30,7 +30,11 @@ export default function Tester() {
 
   // records
   const [records, setRecords] = useState<WordRecord[]>([])
-  const [record, setRecord] = useState<WordRecord>([])
+  const [record, setRecord] = useState<WordRecord>({
+    strokes: [],
+    word,
+    finger,
+  })
   const [startTime, setStartTime] = useState(0)
 
   const startOrStop = () => {
@@ -40,7 +44,11 @@ export default function Tester() {
         inputRef?.current?.focus()
       }, 100)
     } else {
-      setRecord([])
+      setRecord({
+        strokes: [],
+        word: word,
+        finger: finger,
+      })
       hiddenRef?.current?.focus()
     }
   }
@@ -57,7 +65,7 @@ export default function Tester() {
 
     // typing logic
     if (isStarted && e.type == 'keydown') {
-      const pos = record.length
+      const pos = record.strokes.length
       if (pos == word.length) {
         return // finished
       }
@@ -65,13 +73,17 @@ export default function Tester() {
       const nextKey = word[pos]
       if (e.key.toUpperCase() === nextKey) {
         const t = Date.now()
-        const newRecord = [
-          ...record,
-          {
-            timeDown: startTime ? t - startTime : 0,
-            timeUp: -1, // TODO:
-          },
-        ]
+        const newRecord = {
+          strokes: [
+            ...record.strokes,
+            {
+              timeDown: startTime ? t - startTime : 0,
+              timeUp: -1, // TODO:
+            },
+          ],
+          word,
+          finger,
+        }
 
         if (!pos) {
           setStartTime(t)
@@ -79,7 +91,11 @@ export default function Tester() {
         if (pos === word.length - 1) {
           setTimeout(() => {
             setRecords([...records, newRecord])
-            setRecord([])
+            setRecord({
+              strokes: [],
+              word,
+              finger,
+            })
           }, wordInterval)
         }
         setRecord(newRecord)
@@ -125,9 +141,9 @@ export default function Tester() {
           <input ref={hiddenRef} type="text" className="opacity-0" value="" readOnly={true} />
         </form>
       </div>
-      {isStarted && <Trial word={word} finger={finger} record={record} />}
-      {records.map((r, i) => (
-        <Trial key={i} word={word} finger={finger} record={r} />
+      {isStarted && <Trial record={record} />}
+      {[...records].reverse().map((r, i) => (
+        <Trial key={records.length - i} record={r} />
       ))}
     </main>
   )

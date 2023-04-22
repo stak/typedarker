@@ -2,23 +2,27 @@ export type StrokeLog = {
   timeDown: number
   timeUp: number
 }
-export type WordRecord = StrokeLog[]
-
-type Props = {
+export type WordRecord = {
   word: string
   finger: string
+  strokes: StrokeLog[]
+}
+
+type Props = {
   record: WordRecord
 }
 
-const Trial: React.FC<Props> = ({ word, finger, record }) => {
-  const pos = record.length
+const Trial: React.FC<Props> = ({ record }) => {
+  const pos = record.strokes.length
 
   return (
     <div className="border-t-2 border-gray-600 px-1">
-      <span className="text-xl font-mono text-gray-400">{word.slice(0, pos)}</span>
-      <span className="text-xl font-mono text-white">{word.slice(pos)}</span>
+      <span className="text-xl font-mono text-gray-400">{record.word.slice(0, pos)}</span>
+      <span className="text-xl font-mono text-white">{record.word.slice(pos)}</span>
       <hr className="opacity-0" />
-      {word.length === record.length && <span>{record.at(-1)?.timeDown} ms</span>}
+      {record.word.length === record.strokes.length && (
+        <span>{record.strokes.at(-1)?.timeDown} ms</span>
+      )}
     </div>
   )
 }
