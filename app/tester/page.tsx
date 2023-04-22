@@ -35,7 +35,11 @@ export default function Tester() {
 
   const startOrStop = () => {
     setIsStarted(!isStarted)
-    if (!isStarted) {
+    if (isStarted) {
+      setTimeout(() => {
+        inputRef?.current?.focus()
+      }, 100)
+    } else {
       setRecord([])
       hiddenRef?.current?.focus()
     }
