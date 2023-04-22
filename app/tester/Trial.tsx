@@ -17,7 +17,7 @@ const Trial: React.FC<Props> = ({ record }) => {
 
   return (
     <div className="border-t-2 border-gray-600 px-1">
-      <span className="text-xl font-mono text-gray-400">{record.word.slice(0, pos)}</span>
+      <span className="text-xl font-mono text-gray-600">{record.word.slice(0, pos)}</span>
       <span className="text-xl font-mono text-white">{record.word.slice(pos)}</span>
       <hr className="opacity-0" />
       {record.word.length === record.strokes.length && (
