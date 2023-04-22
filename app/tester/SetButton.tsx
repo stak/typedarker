@@ -6,7 +6,7 @@ type Props = {
 }
 
 const SetButton: React.FC<Props> = ({ isStarted, onClick }) => {
-  const bgColor = isStarted ? 'bg-indigo-800' : 'bg-slate-800'
+  const bgColor = isStarted ? 'bg-slate-800' : 'bg-indigo-800'
   const label = isStarted ? 'Exit (Esc)' : 'Start (Enter)'
 
   return (

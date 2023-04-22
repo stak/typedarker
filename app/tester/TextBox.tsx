@@ -6,11 +6,20 @@ type Props = {
   placeholder: string
   text: string
   className?: string
+  disabled?: boolean
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   _ref?: RefObject<HTMLInputElement>
 }
 
-const TextBox: React.FC<Props> = ({ title, placeholder, text, onChange, className, _ref }) => {
+const TextBox: React.FC<Props> = ({
+  title,
+  placeholder,
+  text,
+  disabled,
+  onChange,
+  className,
+  _ref,
+}) => {
   return (
     <div className={classNames('relative', className)}>
       <label
@@ -26,6 +35,7 @@ const TextBox: React.FC<Props> = ({ title, placeholder, text, onChange, classNam
         placeholder={placeholder}
         ref={_ref}
         value={text}
+        disabled={!!disabled}
         onChange={onChange}
       />
     </div>

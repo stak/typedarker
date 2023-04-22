@@ -19,10 +19,16 @@ export default function Tester() {
   useEffect(() => {
     inputRef?.current?.focus()
   }, [])
+
+  // game state
   const [isStarted, setIsStarted] = useState(false)
   const [word, setWord] = useState('')
   const [finger, setFinger] = useState('')
 
+  // game config
+  const [wordInterval, setWordInterval] = useState(1000)
+
+  // records
   const [records, setRecords] = useState<WordRecord[]>([])
   const [record, setRecord] = useState<WordRecord>([])
   const [startTime, setStartTime] = useState(0)
@@ -62,7 +68,7 @@ export default function Tester() {
           setTimeout(() => {
             setRecords([...records, record])
             setRecord([])
-          }, 1000)
+          }, wordInterval)
         }
         setRecord([
           ...record,
@@ -84,6 +90,7 @@ export default function Tester() {
             title="Keystrokes"
             placeholder="HOGEHOGE"
             text={word}
+            disabled={isStarted}
             onChange={(e) => {
               if (isStarted) {
                 e.preventDefault()
@@ -98,6 +105,7 @@ export default function Tester() {
             title="Fingers"
             placeholder="79427942"
             text={finger}
+            disabled={isStarted}
             onChange={(e) => {
               if (isStarted) {
                 e.preventDefault()
