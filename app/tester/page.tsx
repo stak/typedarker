@@ -58,11 +58,17 @@ export default function Tester() {
         if (!pos) {
           setStartTime(t)
         }
+        if (pos === word.length - 1) {
+          setTimeout(() => {
+            setRecords([...records, record])
+            setRecord([])
+          }, 1000)
+        }
         setRecord([
           ...record,
           {
             timeDown: startTime ? t - startTime : 0,
-            timeUp: -1,
+            timeUp: -1, // TODO:
           },
         ])
       }
@@ -79,7 +85,11 @@ export default function Tester() {
             placeholder="HOGEHOGE"
             text={word}
             onChange={(e) => {
-              setWord(e.target.value.toUpperCase())
+              if (isStarted) {
+                e.preventDefault()
+              } else {
+                setWord(e.target.value.toUpperCase())
+              }
             }}
             className="my-2"
             _ref={inputRef}
@@ -89,12 +99,16 @@ export default function Tester() {
             placeholder="79427942"
             text={finger}
             onChange={(e) => {
-              setFinger(e.target.value)
+              if (isStarted) {
+                e.preventDefault()
+              } else {
+                setFinger(e.target.value)
+              }
             }}
             className="my-2"
           />
           <SetButton isStarted={isStarted} onClick={startOrStop} />
-          <input ref={hiddenRef} type="text" className="opacity-0" value="" />
+          <input ref={hiddenRef} type="text" className="opacity-0" value="" readOnly={true} />
         </form>
       </div>
       {isStarted && <Trial word={word} finger={finger} record={record} />}
