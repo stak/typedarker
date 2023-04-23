@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import TextBox from './TextBox'
 import SetButton from './SetButton'
 import { KeyboardEventHandler, useEffect, useRef, useState } from 'react'
@@ -29,13 +28,14 @@ export default function Tester() {
   const [wordInterval, setWordInterval] = useState(100)
 
   // records
+  const [startTime, setStartTime] = useState(0)
   const [records, setRecords] = useState<WordRecord[]>([])
   const [record, setRecord] = useState<WordRecord>({
     strokes: [],
     word,
     finger,
+    startTime,
   })
-  const [startTime, setStartTime] = useState(0)
 
   const startOrStop = () => {
     setIsStarted(!isStarted)
@@ -46,8 +46,9 @@ export default function Tester() {
     } else {
       setRecord({
         strokes: [],
-        word: word,
-        finger: finger,
+        word,
+        finger,
+        startTime: 0,
       })
       hiddenRef?.current?.focus()
     }
@@ -83,6 +84,7 @@ export default function Tester() {
           ],
           word,
           finger,
+          startTime,
         }
 
         if (!pos) {
@@ -95,6 +97,7 @@ export default function Tester() {
               strokes: [],
               word,
               finger,
+              startTime: 0,
             })
             setStartTime(0)
           }, wordInterval)
@@ -143,8 +146,8 @@ export default function Tester() {
         </form>
       </div>
       {isStarted && <Trial record={record} />}
-      {[...records].reverse().map((r, i) => (
-        <Trial key={records.length - i} record={r} />
+      {[...records].reverse().map((r) => (
+        <Trial key={r.startTime} record={r} />
       ))}
     </main>
   )

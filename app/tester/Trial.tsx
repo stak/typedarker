@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import TrialChart from './TrialChart'
 
 export type StrokeLog = {
@@ -5,6 +6,7 @@ export type StrokeLog = {
   timeUp: number
 }
 export type WordRecord = {
+  startTime: number
   word: string
   finger: string
   strokes: StrokeLog[]
@@ -32,4 +34,4 @@ const Trial: React.FC<Props> = ({ record }) => {
   )
 }
 
-export default Trial
+export default memo(Trial)
