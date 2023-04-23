@@ -1,17 +1,7 @@
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 import { WordRecord } from './Trial'
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
 
 type Props = {
   record: WordRecord
