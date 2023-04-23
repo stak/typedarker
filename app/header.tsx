@@ -9,7 +9,7 @@ const header = () => {
             <Link href="/">TypeDarker</Link>
           </li>
           <li className="p-2 hover:bg-gray-600">
-            <Link href="/tester">Tester</Link>
+            <Link href="/analyzer">Analyzer</Link>
           </li>
           <li className="p-2 hover:bg-gray-600">
             <Link href="/cost">Cost</Link>
