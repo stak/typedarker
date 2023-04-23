@@ -1,5 +1,8 @@
 import { memo } from 'react'
-import TrialChart from './TrialChart'
+import SumTimeChart from './SumTimeChart'
+import EachTimeChart from './EachTimeChart'
+import EachTimeAvgChart from './EachTimeAvgChart'
+import SpeedChart from './SpeedChart'
 
 export type StrokeLog = {
   timeDown: number
@@ -32,8 +35,19 @@ const Trial: React.FC<Props> = ({ record }) => {
           </span>
         </div>
       )}
-      <div className="h-20 w-80">
-        <TrialChart record={record} />
+      <div className="flex">
+        <div className="h-40 w-80">
+          <SumTimeChart record={record} />
+        </div>
+        <div className="h-40 w-80">
+          <SpeedChart record={record} />
+        </div>
+        <div className="h-40 w-80">
+          <EachTimeChart record={record} />
+        </div>
+        <div className="h-40 w-80">
+          <EachTimeAvgChart record={record} />
+        </div>
       </div>
     </div>
   )
