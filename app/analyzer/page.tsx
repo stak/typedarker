@@ -109,7 +109,7 @@ export default function Tester() {
 
   return (
     <main className="min-h-screen p-24" onKeyDown={keyHandler} onKeyUp={keyHandler} tabIndex={-1}>
-      <h2 className="mb-4 text-2xl">Tester</h2>
+      <h2 className="mb-4 text-2xl">Analyzer</h2>
       <div>
         <form action="#" onSubmit={() => false}>
           <TextBox
