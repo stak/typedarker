@@ -25,9 +25,14 @@ const Trial: React.FC<Props> = ({ record }) => {
       <span className="text-xl font-mono text-white">{record.word.slice(pos)}</span>
       <hr className="opacity-0" />
       {record.word.length === record.strokes.length && (
-        <span>{record.strokes.at(-1)?.timeDown} ms</span>
+        <div>
+          <span className="mx-4">{record.strokes.at(-1)!.timeDown} ms</span>
+          <span className="mx-4">
+            {Math.round(pos / (record.strokes.at(-1)!.timeDown / 1000)) * 60} kpm
+          </span>
+        </div>
       )}
-      <div className="h-20">
+      <div className="h-20 w-80">
         <TrialChart record={record} />
       </div>
     </div>

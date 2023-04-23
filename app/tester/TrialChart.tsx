@@ -27,14 +27,18 @@ const recordToData = (record: WordRecord) => {
 
 const TrialChart: React.FC<Props> = ({ record }) => {
   const data = recordToData(record)
-  console.log('render')
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart width={150} height={40} data={data}>
-        <Bar dataKey="timeDown" fill="#8884d8" />
-        <XAxis dataKey="stroke" />
+      <BarChart barGap={0} barCategoryGap={0} data={data}>
+        <Bar dataKey="timeDown" fill="#8884d8" isAnimationActive={false} />
+        <XAxis dataKey="stroke" interval={0} />
         <YAxis />
+        <Tooltip
+          wrapperStyle={{ backgroundColor: 'transparent', border: 0, top: -60 }}
+          contentStyle={{ backgroundColor: 'transparent', border: 0 }}
+          cursor={{ fill: '#fff', opacity: '0.2' }}
+        />
       </BarChart>
     </ResponsiveContainer>
   )
