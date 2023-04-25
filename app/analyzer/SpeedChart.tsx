@@ -36,7 +36,7 @@ const SpeedChart: React.FC<Props> = ({ record }) => {
         <XAxis dataKey="stroke" interval={0} />
         <YAxis domain={[0, 2000]} />
         <Tooltip
-          wrapperStyle={{ backgroundColor: '#222', border: 0, top: -90 }}
+          wrapperStyle={{ backgroundColor: '#222', border: 0, top: -90, outline: 'none' }}
           contentStyle={{ backgroundColor: '#222', border: 0 }}
           cursor={{ fill: '#fff', opacity: '0.2' }}
         />

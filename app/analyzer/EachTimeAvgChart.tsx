@@ -40,7 +40,7 @@ const EachTimeAvgChart: React.FC<Props> = ({ record }) => {
         <XAxis dataKey="stroke" interval={0} />
         <YAxis domain={[-100, 100]} />
         <Tooltip
-          wrapperStyle={{ backgroundColor: '#222', border: 0, top: -120 }}
+          wrapperStyle={{ backgroundColor: '#222', border: 0, top: -120, outline: 'none' }}
           contentStyle={{ backgroundColor: '#222', border: 0 }}
           cursor={{ fill: '#fff', opacity: '0.2' }}
         />
