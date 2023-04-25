@@ -50,6 +50,7 @@ export default function Tester() {
         finger,
         startTime: 0,
       })
+      setStartTime(0)
       hiddenRef?.current?.focus()
     }
   }
