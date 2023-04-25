@@ -31,7 +31,7 @@ const Trial: React.FC<Props> = ({ record }) => {
         <div>
           <span className="mx-4">{record.strokes.at(-1)!.timeDown} ms</span>
           <span className="mx-4">
-            {Math.round(pos / (record.strokes.at(-1)!.timeDown / 1000)) * 60} kpm
+            {Math.round(((pos - 1) / (record.strokes.at(-1)!.timeDown / 1000)) * 60)} kpm
           </span>
         </div>
       )}
